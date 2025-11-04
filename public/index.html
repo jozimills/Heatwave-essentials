@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HeatWave Essentials</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header aria-label="Site header">
+      <img src="images/heatwave.png" alt="HeatWave" style="height: 90px;">
+      <div id="cart-summary" class="cart-summary" aria-label="Cart summary">
+        <button id="open-cart" class="cart-icon-btn" aria-label="Open cart">
+          🛒 Cart
+        </button>
+      </div>
+    </header>
+
+    <div
+      id="cart-drawer"
+      class="cart-drawer"
+      aria-label="Cart drawer"
+      tabindex="-1"
+    >
+      <div class="cart-drawer-header">
+        <span>🛒 Your Cart</span>
+        <button id="close-cart" class="close-cart-btn" aria-label="Close cart">
+          &times;
+        </button>
+      </div>
+      <div class="cart-drawer-content" id="cart-drawer-content">
+        <p class="cart-empty">Your cart is empty.</p>
+      </div>
+      <div
+        class="cart-drawer-footer"
+        id="cart-drawer-footer"
+        style="display: none"
+      >
+        <div class="cart-total-row">
+          Total: <span id="drawer-cart-total">$0.00</span>
+        </div>
+        <button class="checkout-btn" disabled>Checkout</button>
+      </div>
+    </div>
+    <div id="cart-backdrop" class="cart-backdrop"></div>
+
+    <main>
+      <section
+        id="hero"
+        style="
+          background: linear-gradient(135deg, #2a1810 0%, #1a1a1a 50%, #0d0d0d 100%);
+          border-radius: 24px;
+          box-shadow: 0 4px 20px rgba(255, 140, 66, 0.2);
+          margin: 48px 0 40px 0;
+          padding: 48px 24px 40px 24px;
+          text-align: center;
+          border: 2px solid #ff8c42;
+          position: relative;
+          overflow: hidden;
+        "
+      >
+        <div style="position: absolute; top: 10px; left: 20px; font-size: 2rem; opacity: 0.3;">🍂</div>
+        <div style="position: absolute; bottom: 15px; right: 25px; font-size: 1.8rem; opacity: 0.3;">🍁</div>
+        <h2
+          style="
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 0.5em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+          "
+        >
+          🍂 Fall Sale Alert: Save 33% Off! 🍂
+        </h2>
+        <p
+          style="
+            font-size: 1.3rem;
+            color: #ff8c42;
+            max-width: 600px;
+            margin: 0 auto;
+          "
+        >
+        </p>
+      </section>
+
+      <section id="home">
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-image-section">
+              <div class="product-thumbnails">
+                <img 
+                  src="images/modeljacket.jpeg" 
+                  alt="Model Wearing Heated Jacket" 
+                  class="thumbnail active"
+                  onmouseover="changeMainImage(this.src, this)"
+                />
+                <img 
+                  src="images/heated jacket.png" 
+                  alt="Heated Jacket Main View" 
+                  class="thumbnail"
+                  onmouseover="changeMainImage(this.src, this)"
+                />
+                <img 
+                  src="images/heatedjacketfunctions.png" 
+                  alt="Heated Jacket Functions" 
+                  class="thumbnail"
+                  onmouseover="changeMainImage(this.src, this)"
+                />
+                <img 
+                  src="images/heatjacketmap.png" 
+                  alt="Heated Jacket Heat Map" 
+                  class="thumbnail"
+                  onmouseover="changeMainImage(this.src, this)"
+                />
+              </div>
+              <div class="main-image-container">
+                <img
+                  id="main-product-image"
+                  src="images/modeljacket.jpeg"
+                  alt="Heated Winter Jacket"
+                  width="500"
+                  height="500"
+                  style="width: 500px !important; height: 500px !important; max-width: none !important; max-height: none !important;"
+                />
+              </div>
+            </div>
+            <h3>HeatWave - Heated Winter Jacket</h3>
+            <div class="product-pricing">
+              <span class="old-price">$89.99</span>
+              <span class="sale-price">$59.99</span>
+            </div>
+            <p>
+              Stay warm and comfortable with our advanced heated jacket featuring 3 strategically placed heating zones and premium insulation. 
+              Designed for outdoor enthusiasts and professionals who refuse to let cold weather slow them down. The waterproof construction 
+              and adjustable heat settings ensure optimal comfort in any winter condition.
+            </p>
+            <p class="battery-note" style="color: var(--autumn-gold); font-weight: 600; font-size: 0.95rem; margin-top: 10px;">
+              Note: Power bank sold separately
+            </p>
+            
+            <div class="bundle-options">
+              <div style="display: flex; gap: 15px; margin-bottom: 12px;">
+                <div style="flex: 1;">
+                  <label
+                    for="size"
+                    style="font-weight: 600; margin-bottom: 6px; display: block"
+                  >
+                    Size:
+                  </label>
+                  <select
+                    id="size"
+                    name="size"
+                    required
+                    style="
+                      width: 100%;
+                      padding: 8px 6px;
+                      border-radius: 8px;
+                      border: 2px solid #ff8c42;
+                      background: #2a1810;
+                      color: #ff8c42;
+                    "
+                  >
+                    <option value="" disabled selected>Select size</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                    <option value="X-Large">X-Large</option>
+                    <option value="XX-Large">XX-Large</option>
+                  </select>
+                </div>
+                
+                <div style="flex: 1;">
+                  <label
+                    for="color"
+                    style="font-weight: 600; margin-bottom: 6px; display: block"
+                  >
+                    Color:
+                  </label>
+                  <select
+                    id="color"
+                    name="color"
+                    required
+                    style="
+                      width: 100%;
+                      padding: 8px 6px;
+                      border-radius: 8px;
+                      border: 2px solid #ff8c42;
+                      background: #2a1810;
+                      color: #ff8c42;
+                    "
+                  >
+                    <option value="" disabled selected>Select color</option>
+                    <option value="Black">Black</option>
+                    <option value="Red">Red</option>
+                    <option value="Blue">Blue</option>
+                  </select>
+                </div>
+              </div>
+              
+              <button class="add-cart-btn" onclick="addBundleToCart(1, 59.99)">
+                1 Jacket - $59.99
+              </button>
+              <button class="add-cart-btn" onclick="addBundleToCart(2, 99.99)">
+                2 Jackets - $99.99
+              </button>
+            </div>
+            
+            <!-- Product Specifications -->
+            <div class="product-specs">
+              <div class="spec-tabs">
+                <button class="spec-tab active" onclick="showSpecTab('details')">Specifications</button>
+                <button class="spec-tab" onclick="showSpecTab('sizing')">Size Guide</button>
+              </div>
+              
+              <div id="details" class="spec-content active">
+                <div class="spec-grid">
+                  <div class="spec-item">
+                    <strong>Heating Zones:</strong> 3 zones (chest, back, neck)
+                  </div>
+                  <div class="spec-item">
+                    <strong>Heat Settings:</strong> Low (77°F), Medium (95°F), High (113°F)
+                  </div>
+                  <div class="spec-item">
+                    <strong>Material:</strong> Waterproof nylon shell, polyester lining
+                  </div>
+                  <div class="spec-item">
+                    <strong>Weight:</strong> 2.2 lbs (battery sold separately)
+                  </div>
+                  <div class="spec-item">
+                    <strong>Water Resistance:</strong> IPX4 rated
+                  </div>
+                </div>
+              </div>
+              
+              <div id="sizing" class="spec-content">
+                <div class="size-chart">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Size</th>
+                        <th>Chest</th>
+                        <th>Length</th>
+                        <th>Height Range</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Small</td>
+                        <td>36-38"</td>
+                        <td>26"</td>
+                        <td>5'4" - 5'7"</td>
+                      </tr>
+                      <tr>
+                        <td>Medium</td>
+                        <td>40-42"</td>
+                        <td>27"</td>
+                        <td>5'7" - 5'10"</td>
+                      </tr>
+                      <tr>
+                        <td>Large</td>
+                        <td>44-46"</td>
+                        <td>28"</td>
+                        <td>5'10" - 6'1"</td>
+                      </tr>
+                      <tr>
+                        <td>X-Large</td>
+                        <td>48-50"</td>
+                        <td>29"</td>
+                        <td>6'1" - 6'3"</td>
+                      </tr>
+                      <tr>
+                        <td>XX-Large</td>
+                        <td>52-54"</td>
+                        <td>30"</td>
+                        <td>6'3" - 6'6"</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p class="size-note">Measure chest at fullest point. Relaxed fit allows for layering.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <h2>About Us</h2>
+        <p>
+          HeatWave Essentials specializes in premium heated clothing technology. Our
+          mission is to keep you warm and comfortable in any weather condition. We believe 
+          in innovative solutions for outdoor enthusiasts and professionals who refuse to let 
+          cold weather slow them down.
+        </p>
+        <p>
+          <strong>You won't be disappointed.</strong> Our customers choose us because we deliver on quality, 
+          comfort, and reliability. With fast worldwide shipping, responsive customer service, and a 
+          30-day satisfaction guarantee, we stand behind every product we sell. Join thousands of satisfied 
+          customers who trust HeatWave Essentials to keep them warm when it matters most.
+        </p>
+      </section>
+
+      <section id="reviews">
+        <h2>Customer Reviews</h2>
+        <div class="review">
+          <strong>Sarah M.</strong>
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p>
+            "This heated jacket is a game-changer! Perfect for my morning runs 
+            in winter. The battery lasts all day!"
+          </p>
+        </div>
+        <div class="review">
+          <strong>David K.</strong>
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p>
+            "Amazing quality and so warm! I work outdoors and this jacket 
+            keeps me comfortable even in freezing temperatures."
+          </p>
+        </div>
+        <div class="review">
+          <strong>Lisa R.</strong>
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p>"Fast shipping and incredible warmth. Love the different heat settings!"</p>
+        </div>
+      </section>
+
+      <section id="shipping-returns">
+        <h2>Shipping & Returns</h2>
+        <div class="policy-grid">
+          <div class="policy-section">
+            <h3>Shipping</h3>
+            <p><strong>Free standard shipping</strong> on orders over $50. Orders processed within 2-3 business days.</p>
+            <p>Standard delivery: 8-12 business days worldwide.</p>
+            <p>All orders include tracking information sent to your email.</p>
+          </div>
+          
+          <div class="policy-section">
+            <h3>Returns</h3>
+            <p><strong>30-day return policy.</strong> Items must be in original condition. Battery pack sold separately.</p>
+            <p>Free return shipping provided. Exchanges processed within 5-7 business days.</p>
+            <p>Contact us at info@heatwave-essentials.com to initiate a return.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: info@heatwave-essentials.com</p>
+        <form aria-label="Contact form">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 HeatWave Essentials. All rights reserved.</p>
+    </footer>
+    <script>
+      // Product Image Carousel Function
+      function changeMainImage(imageSrc, thumbnail) {
+        const mainImage = document.getElementById('main-product-image');
+        mainImage.src = imageSrc;
+        
+        // Remove active class from all thumbnails
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+          thumb.classList.remove('active');
+        });
+        
+        // Add active class to the hovered thumbnail
+        thumbnail.classList.add('active');
+      }
+
+      // Specification Tabs Function
+      function showSpecTab(tabName) {
+        // Hide all tab contents
+        document.querySelectorAll('.spec-content').forEach(content => {
+          content.classList.remove('active');
+        });
+        
+        // Remove active class from all tab buttons
+        document.querySelectorAll('.spec-tab').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        
+        // Show selected tab content
+        document.getElementById(tabName).classList.add('active');
+        
+        // Add active class to clicked button
+        event.target.classList.add('active');
+      }
+
+      // Slide-out cart logic for 3 bundle options, now supports multiple sizes
+      const cartDrawer = document.getElementById("cart-drawer");
+      const cartBackdrop = document.getElementById("cart-backdrop");
+      const openCartBtn = document.getElementById("open-cart");
+      const closeCartBtn = document.getElementById("close-cart");
+      const cartDrawerContent = document.getElementById("cart-drawer-content");
+      const cartDrawerFooter = document.getElementById("cart-drawer-footer");
+      const drawerCartTotal = document.getElementById("drawer-cart-total");
+
+      let cart = [];
+
+      function openCart() {
+        cartDrawer.classList.add("open");
+        cartBackdrop.classList.add("show");
+        cartDrawer.focus();
+        updateCartDrawer();
+      }
+      function closeCart() {
+        cartDrawer.classList.remove("open");
+        cartBackdrop.classList.remove("show");
+      }
+      openCartBtn.onclick = openCart;
+      closeCartBtn.onclick = closeCart;
+      cartBackdrop.onclick = closeCart;
+
+      function addBundleToCart(qty, price) {
+        const size = document.getElementById("size").value;
+        const color = document.getElementById("color").value;
+        if (!size) {
+          alert("Please select a size before adding to cart.");
+          document.getElementById("size").focus();
+          return;
+        }
+        if (!color) {
+          alert("Please select a color before adding to cart.");
+          document.getElementById("color").focus();
+          return;
+        }
+        
+        // Add items individually to cart
+        for (let i = 0; i < qty; i++) {
+          const existing = cart.find(
+            (item) => item.qty === 1 && item.size === size && item.color === color
+          );
+          if (existing) {
+            existing.count = (existing.count || 1) + 1;
+          } else {
+            cart.push({ qty: 1, price: 59.99, size, color, count: 1 });
+          }
+        }
+        
+        openCart();
+        updateCartDrawer();
+      }
+      
+      function updateCartDrawer() {
+        if (!cart.length) {
+          cartDrawerContent.innerHTML =
+            '<p class="cart-empty">Your cart is empty.</p>';
+          cartDrawerFooter.style.display = "none";
+        } else {
+          let total = 0;
+          let totalJackets = 0;
+          
+          // Calculate total jackets across all sizes
+          cart.forEach(item => {
+            totalJackets += item.count;
+          });
+          
+          cartDrawerContent.innerHTML = cart
+            .map((item, idx) => {
+              let itemPrice = item.price;
+              let displayPrice = itemPrice;
+              
+              // Apply bundle discount if 2+ total jackets
+              if (totalJackets >= 2) {
+                displayPrice = 49.995; // $99.99 / 2 = $49.995 per jacket
+              }
+              
+              const itemTotal = displayPrice * item.count;
+              total += itemTotal;
+              
+              return `
+              <div class="cart-item">
+                <div class="cart-item-info">
+                  <strong>HeatWave- Heated Winter Jacket</strong><br>
+                  <span>Size: <b>${item.size}</b> | Color: <b>${item.color}</b></span>
+                  <span style="display:block; color:#64748b; font-size:0.98em;">Qty: ${item.count}</span>
+                  ${totalJackets >= 2 ? '<span style="display:block; color:#e67e22; font-size:0.9em;">Bundle Discount Applied!</span>' : ''}
+                </div>
+                <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                <button class="remove-cart-btn" onclick="removeCartItem(${idx})" aria-label="Remove item">&times;</button>
+              </div>
+            `;
+            })
+            .join("");
+            
+          drawerCartTotal.textContent = `$${total.toFixed(2)}`;
+          cartDrawerFooter.style.display = "";
+        }
+      }
+      function removeCartItem(idx) {
+        cart.splice(idx, 1);
+        updateCartDrawer();
+      }
+    </script>
+  </body>
+</html>

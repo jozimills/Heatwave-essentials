@@ -347,14 +347,43 @@
       <section id="contact">
         <h2>Contact Us</h2>
         <p>Email: info@heatwave-essentials.com</p>
-        <form aria-label="Contact form">
+        
+        <!-- Success/Error Messages -->
+        <div id="form-messages" style="display: none; padding: 15px; margin: 15px 0; border-radius: 5px;"></div>
+        
+        <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" aria-label="Contact form" id="contact-form">
+          <!-- Hidden field for Netlify Forms -->
+          <input type="hidden" name="form-name" value="contact" />
+          
+          <!-- Honeypot field for spam protection (hidden) -->
+          <div style="display: none;">
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+          </div>
+          
           <label for="name">Name:</label>
           <input type="text" id="name" name="name" required />
+          
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" required />
+          
+          <label for="subject">Subject:</label>
+          <select id="subject" name="subject" required>
+            <option value="">Select a topic</option>
+            <option value="Product Inquiry">Product Inquiry</option>
+            <option value="Order Support">Order Support</option>
+            <option value="Shipping Question">Shipping Question</option>
+            <option value="Return/Exchange">Return/Exchange</option>
+            <option value="Technical Support">Technical Support</option>
+            <option value="Other">Other</option>
+          </select>
+          
           <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-          <button type="submit">Send</button>
+          <textarea id="message" name="message" rows="4" required placeholder="Please describe your inquiry..."></textarea>
+          
+          <button type="submit" id="submit-btn">
+            <span id="submit-text">Send Message</span>
+            <span id="submit-loading" style="display: none;">Sending...</span>
+          </button>
         </form>
       </section>
     </main>
@@ -501,6 +530,63 @@
         cart.splice(idx, 1);
         updateCartDrawer();
       }
+      
+      // Contact Form Handling
+      document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById('contact-form');
+        const formMessages = document.getElementById('form-messages');
+        const submitBtn = document.getElementById('submit-btn');
+        const submitText = document.getElementById('submit-text');
+        const submitLoading = document.getElementById('submit-loading');
+        
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Show loading state
+          submitBtn.disabled = true;
+          submitText.style.display = 'none';
+          submitLoading.style.display = 'inline';
+          
+          // Get form data
+          const formData = new FormData(contactForm);
+          
+          // Submit to Netlify
+          fetch('/', {
+            method: 'POST',
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString()
+          })
+          .then(response => {
+            if (response.ok) {
+              showMessage('success', 'Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.');
+              contactForm.reset();
+            } else {
+              throw new Error('Network response was not ok');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            showMessage('error', 'Sorry, there was an error sending your message. Please try again or email us directly at info@heatwave-essentials.com');
+          })
+          .finally(() => {
+            // Reset button state
+            submitBtn.disabled = false;
+            submitText.style.display = 'inline';
+            submitLoading.style.display = 'none';
+          });
+        });
+        
+        function showMessage(type, message) {
+          formMessages.style.display = 'block';
+          formMessages.className = type === 'success' ? 'success-message' : 'error-message';
+          formMessages.textContent = message;
+          
+          // Auto-hide after 5 seconds
+          setTimeout(() => {
+            formMessages.style.display = 'none';
+          }, 5000);
+        }
+      });
     </script>
   </body>
 </html>

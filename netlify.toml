@@ -11,6 +11,11 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Netlify Forms Configuration
+[[forms]]
+  name = "contact"
+  action = "/thank-you"
+  
 # Force HTTPS redirect - simplified
 [[redirects]]
   from = "http://*"

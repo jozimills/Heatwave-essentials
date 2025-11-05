@@ -11,13 +11,6 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Redirect rules for single page application
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  conditions = {Role = ["admin"]}
-
 # Headers for security and performance
 [[headers]]
   for = "/*"

@@ -387,18 +387,54 @@ form select {
   width: 100%;
   padding: 12px;
   margin: 8px 0 16px 0;
-  border: 1px solid #3a3a3a;
+  border: 2px solid #3a3a3a;
   border-radius: 8px;
-  background: #1a1a1a;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a1810 100%);
   color: var(--accent);
   font-size: 1rem;
+  font-family: "Quicksand", Arial, Helvetica, sans-serif;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
+  /* Custom arrow styling */
+  appearance: none;
+  background-image: linear-gradient(135deg, #1a1a1a 0%, #2a1810 100%),
+                    linear-gradient(45deg, transparent 50%, var(--accent) 50%),
+                    linear-gradient(-45deg, transparent 50%, var(--accent) 50%);
+  background-position: right 15px center, right 10px center, right 6px center;
+  background-size: 1px 1px, 4px 4px, 4px 4px;
+  background-repeat: no-repeat;
+  padding-right: 30px;
 }
 
 form select:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 8px rgba(255, 140, 66, 0.3);
+  box-shadow: 0 0 12px rgba(255, 140, 66, 0.4);
+  background: linear-gradient(135deg, #2a1810 0%, #1a1a1a 100%);
+}
+
+form select:hover {
+  border-color: var(--autumn-gold);
+  background: linear-gradient(135deg, #2a1810 0%, #1a1a1a 100%);
+}
+
+/* Style the select options */
+form select option {
+  background: #1a1a1a;
+  color: var(--accent);
+  padding: 10px;
+  font-weight: 600;
+}
+
+form select option:checked {
+  background: var(--accent);
+  color: #0d0d0d;
+}
+
+form select option:hover {
+  background: var(--autumn-gold);
+  color: #0d0d0d;
 }
 
 form button[type="submit"]:disabled {

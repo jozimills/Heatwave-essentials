@@ -11,20 +11,12 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Force HTTPS redirect
-[[redirects]]
-  from = "http://heatwave-essentials.netlify.app/*"
-  to = "https://heatwave-essentials.netlify.app/:splat"
-  status = 301
-  force = true
-
-# Force HTTPS for any custom domain (if you add one later)
+# Force HTTPS redirect - simplified
 [[redirects]]
   from = "http://*"
   to = "https://:splat"
   status = 301
   force = true
-  conditions = {Country = ["*"]}
 
 # Headers for security and performance
 [[headers]]

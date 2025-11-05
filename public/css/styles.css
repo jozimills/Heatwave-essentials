@@ -25,30 +25,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Floating autumn leaves animation */
-body::before {
-  content: "🍂 🍁 🍃 🍂 🍁 🍃 🍂 🍁 🍃 🍂 🍁 🍃";
-  position: fixed;
-  top: -50px;
-  left: -50px;
-  width: 120%;
-  height: 120vh;
-  font-size: 2rem;
-  opacity: 0.1;
-  pointer-events: none;
-  z-index: -1;
-  animation: falling-leaves 20s infinite linear;
-}
-
-@keyframes falling-leaves {
-  0% {
-    transform: translateY(-100vh) rotate(0deg);
-  }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-  }
-}
-
 header {
   background: linear-gradient(135deg, #1a1a1a 0%, #2a1810 100%);
   color: var(--autumn-gold);
@@ -265,15 +241,6 @@ section {
   padding: 32px 28px;
   border: 2px solid var(--accent);
   position: relative;
-}
-
-section::before {
-  content: "🍁";
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 1.8rem;
-  opacity: 0.3;
 }
 
 section h2 {
